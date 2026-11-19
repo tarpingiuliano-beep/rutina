@@ -1,5 +1,5 @@
 /* Service worker: la app funciona sin internet. Con conexión, siempre trae la versión nueva, así que no hay que reinstalar nada. */
-var V = 'rutina-v3';
+var V = 'rutina-v4';
 var SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(V).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));

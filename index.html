@@ -279,8 +279,9 @@ var TABS=[['hoy','Hoy'],['fases','Fases'],['test','Test'],['reg','Registro']];
 /* ---------- Estado ---------- */
 var STORE='rutina-calistenia-v1';
 var BASE_TEST={t:Date.UTC(2026,10,7,15),v:{hang:60,pullP:3,negS:5,knee:11,pushI:10,squat:30,wall:25,plank:40,oaR:10,oaL:1}};
-var state={tab:'hoy',day:null,start:'2026-11-10',protect:true,sess:null,pain:{},log:[],tests:[BASE_TEST],vol:0.7,pips:'sec'};
+var state={tab:'hoy',day:null,start:'2026-11-10',protect:true,sess:null,pain:{},log:[],tests:[BASE_TEST],vol:0.7,pips:'sec',ver:0};
 try{var sv=JSON.parse(localStorage.getItem(STORE)||'null');if(sv){for(var k in sv){if(k in state)state[k]=sv[k];}}}catch(e){}
+if(!state.ver){state.start=ymdOf(todayUTC());state.sess=null;state.day=null;state.ver=2;try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){}}
 function save(){try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){}}
 var $=function(s,r){return (r||document).querySelector(s);};
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -636,7 +637,7 @@ function fasesView(){
     '<article class="card"><h2>Ajustes</h2>'+
     '<label class="row">Inicio de la Fase 1 <input type="date" id="startDate" value="'+esc(state.start)+'"></label>'+
     '<label class="row"><input type="checkbox" class="sw" id="protect"'+(state.protect?' checked':'')+'> Modo protección del codo (usa la variante más suave en flexiones)</label>'+
-    '<div class="fctl"><button type="button" class="btn" data-act="nextphase">Pasar a la fase siguiente hoy</button></div>'+
+    '<div class="fctl"><button type="button" class="btn" data-act="starttoday">Empezar hoy (día 1 de la Fase 1)</button><button type="button" class="btn" data-act="nextphase">Pasar a la fase siguiente hoy</button></div>'+
     '<p class="sub" style="margin:0">Tus datos se guardan solo en este teléfono.</p></article></div>';
 }
 function testView(){
@@ -715,6 +716,7 @@ document.addEventListener('click',function(e){
     state.tab='reg';render();return;
   }
   if(act==='clearlog'){state.log=[];save();render();return;}
+  if(act==='starttoday'){state.start=ymdOf(todayUTC());state.sess=null;state.day=null;S.steps=[];state.pain={};save();render();return;}
   if(act==='nextphase'){
     var p2=phaseInfo();state.start=ymdOf(todayUTC()-(p2.n+1)*15*DAY);state.sess=null;S.steps=[];state.pain={};save();render();return;
   }
