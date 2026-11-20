@@ -242,6 +242,10 @@ var LIB={
   knee:{name:'Elevaciones de rodillas colgado',type:'reps',fig:'knee',cues:['Colgado con los brazos estirados, sin encoger los hombros.','Subí las rodillas hasta que los muslos pasen la horizontal.','Bajá controlado, sin impulso.'],prog:'Sumá 1 repetición por serie. Más adelante, piernas más estiradas.',reg:'Subí las rodillas solo hasta la altura de la cadera.'},
   leg:{name:'Elevaciones de piernas casi rectas',type:'reps',fig:'leg',cues:['Colgado con los brazos estirados y las piernas juntas.','Subí las piernas casi estiradas hasta la horizontal, sin balanceo.','Bajá en 2 s, sin soltar el abdomen.'],prog:'Sumá 1 repetición o una pausa de 1 s arriba.',reg:'Volvé a elevaciones de rodillas.'},
   pushI:{name:'Flexiones inclinadas (mesa alta)',type:'reps',fig:'pushI',elbow:true,cues:['Manos en una mesa firme, a la altura de la cintura.','Codos a unos 45° del cuerpo, muñecas neutras.','Pecho cerca de la mesa y subí estirando los codos.'],prog:'Bajá la altura de las manos de a poco.',reg:'Subí más la altura de las manos.'},
+  triExt:{name:'Extensión de tríceps en mesa',type:'reps',elbow:true,cues:['Manos en el borde de una mesa firme, cuerpo inclinado y brazos estirados.','Doblá los codos llevando la frente hacia las manos, con los codos apuntando adelante.','Subí extendiendo los brazos sin trabar los codos.'],prog:'Alejá los pies de la mesa para inclinarte más.',reg:'Hacelo más parado, con las manos en la pared.'},
+  triClose:{name:'Flexiones cerradas en mesa alta',type:'reps',elbow:true,cues:['Manos juntas en el borde de la mesa, a la altura del pecho.','Codos pegados al cuerpo y cuerpo en línea.','Bajá controlado y subí sin balancear.'],prog:'Bajá la altura de las manos de a poco.',reg:'Separá un poco las manos o subí la altura.'},
+  curlL:{name:'Curl isométrico con toalla · brazo izquierdo',type:'time',elbow:true,cues:['Pisá el centro de una toalla con el pie izquierdo y agarrá los dos extremos con la mano izquierda.','Con el codo pegado al cuerpo y doblado a 90°, tirá hacia arriba mientras el pie empuja hacia abajo.','Fuerza media y pareja, sin tirón en el codo. Respirá normal.'],prog:'Sumá 5 segundos o hacé más fuerza.',reg:'Menos fuerza o codo más estirado.'},
+  curlR:{name:'Curl isométrico con toalla · brazo derecho',type:'time',elbow:true,cues:['Pisá el centro de una toalla con el pie derecho y agarrá los dos extremos con la mano derecha.','Con el codo pegado al cuerpo y doblado a 90°, tirá hacia arriba mientras el pie empuja hacia abajo.','Fuerza media y pareja, sin tirón en el codo. Respirá normal.'],prog:'Sumá 5 segundos o hacé más fuerza.',reg:'Menos fuerza o codo más estirado.'},
   pushL:{name:'Flexiones con mesa baja y pausa',type:'reps',fig:'pushL',elbow:true,cues:['Manos en una superficie firme más baja (a la altura de la rodilla).','Bajá en 3 s y pausa de 2 s abajo.','Subí con fuerza y codos a unos 45° del cuerpo.'],prog:'Bajá un poco más la altura de las manos.',reg:'Volvé a flexiones en mesa alta.'},
   squat:{name:'Sentadillas con peso corporal',type:'reps',fig:'squat',cues:['Pies al ancho de hombros, peso parejo en ambos pies.','Bajá hasta muslos paralelos, con los talones apoyados.','Subí empujando con todo el pie.'],prog:'Sumá repeticiones o bajá más lento.',reg:'Bajá solo hasta donde mantengas la espalda recta.'},
   squatP:{name:'Sentadilla lenta con pausa',type:'reps',fig:'squatP',cues:['Bajá en 5 s hasta muslos paralelos al piso.','Pausa de 2 s abajo sin relajar.','Subí con fuerza. Opcional: mochila liviana (3 a 5 kg) contra el pecho, solo si la espalda no molesta.'],prog:'Alargá la pausa a 3 s o sumá una repetición.',reg:'Sin pausa o con bajada de 3 s.'},
@@ -257,16 +261,19 @@ var PHASES=[
  {name:'Resistencia',tag:'Poco peso · muchas repeticiones',c:'var(--p1)',
   desc:'Construís técnica, resistencia muscular y base de volumen. Es el equivalente a las etapas de gimnasio con poco peso y muchas repeticiones.',
   how:['Variantes más fáciles y de 12 a 20 repeticiones.','Descanso corto: 45 a 75 segundos.','Terminá cada serie con 3 o 4 repeticiones de reserva.','Bajá siempre controlado, en 2 o 3 segundos.'],
+  arms:[it('triExt',3,12,'bajada 2 s',45),it('triClose',3,10,'controlado',45),it('curlL',3,20,'fuerza media',30),it('curlR',2,20,'fuerza media',30)],
   A:[it('jump',3,8,'bajada 3 s',75),it('pushI',3,12,'controlado',60),it('squat',3,20,'bajada 2 s',60),it('calf',3,20,'bajada 3 s',45),it('knee',3,12,'sin balanceo',60),it('plank',3,30,'cuerpo en línea',45),it('hang',2,40,'hombros relajados',45)],
   B:[it('negS',3,5,'bajada 3 s',75),it('ahang',3,10,'pausa 1 s',60),it('wall',3,30,'rodillas a 90°',45),it('squat',3,20,'bajada 2 s',60),it('knee',3,12,'sin balanceo',60),it('plank',3,30,'cuerpo en línea',45),it('hang',2,40,'hombros relajados',45)]},
  {name:'Fuerza',tag:'Mucho peso · pocas repeticiones',c:'var(--p2)',
   desc:'Buscás fuerza máxima con pocas repeticiones. En calistenia el peso lo da la dificultad: variantes más duras, bajadas lentas de 5 a 6 segundos, pausas y, si querés, una mochila liviana.',
   how:['3 a 6 repeticiones por serie, con la variante más difícil.','Descanso largo: 2 a 3 minutos entre series.','Terminá con 1 o 2 repeticiones de reserva, nunca al fallo.','Bajadas lentas y pausas: la técnica manda.'],
+  arms:[it('triExt',4,6,'bajada 4 s + pausa 1 s',90),it('triClose',3,6,'pausa 1 s abajo',90),it('curlL',3,12,'fuerza alta',60),it('curlR',2,12,'fuerza alta',60)],
   A:[it('negP',5,3,'bajada 6 s',150),it('pushL',4,5,'pausa 2 s abajo',120),it('squatP',4,6,'bajada 5 s + pausa 2 s',120),it('leg',4,5,'sin balanceo',120),it('plankL',4,20,'codos adelante',90),it('hang',2,45,'hombros relajados',60)],
   B:[it('negS',5,3,'bajada 6 s',150),it('pullP',4,2,'solo si salen limpias',150),it('ahang',4,6,'pausa 2 s',90),it('wall',4,40,'rodillas a 90°',90),it('squatP',4,6,'bajada 5 s + pausa 2 s',120),it('leg',4,5,'sin balanceo',120),it('plankL',4,20,'codos adelante',90)]},
  {name:'Descarga',tag:'Descanso activo · recuperar y crecer',c:'var(--p3)',
   desc:'La musculatura crece mientras se recupera. Hacés la mitad de las series, a intensidad moderada, y al final repetís el test para medir cuánto progresaste.',
   how:['2 series por ejercicio, sin llegar al límite.','Descanso normal: 60 a 90 segundos.','Priorizá la técnica, la movilidad y el estiramiento.','En el último día de la fase, repetí el test (pestaña Test).'],
+  arms:[it('triExt',2,8,'bajada 2 s',45),it('triClose',2,6,'controlado',45),it('curlL',2,15,'fuerza media',30),it('curlR',2,15,'fuerza media',30)],
   A:[it('negP',2,3,'bajada 3 s',75),it('pushI',2,8,'controlado',60),it('squat',2,12,'bajada 2 s',60),it('knee',2,8,'sin balanceo',60),it('plank',2,25,'cuerpo en línea',45),it('hang',2,30,'hombros relajados',45)],
   B:[it('negS',2,3,'bajada 3 s',75),it('ahang',2,6,'pausa 1 s',60),it('wall',2,25,'rodillas a 90°',45),it('squat',2,12,'bajada 2 s',60),it('knee',2,8,'sin balanceo',60),it('plank',2,25,'cuerpo en línea',45),it('hang',2,30,'hombros relajados',45)]}
 ];
@@ -280,7 +287,7 @@ var TABS=[['hoy','Hoy'],['fases','Fases'],['test','Test'],['reg','Registro']];
 /* ---------- Estado ---------- */
 var STORE='rutina-calistenia-v1';
 var BASE_TEST={t:Date.UTC(2026,10,7,15),v:{hang:60,pullP:3,negS:5,knee:11,pushI:10,squat:30,wall:25,plank:40,oaR:10,oaL:1}};
-var state={tab:'hoy',day:null,start:'2026-11-10',protect:true,sess:null,pain:{},log:[],tests:[BASE_TEST],vol:0.7,pips:'sec',ver:0};
+var state={tab:'hoy',day:null,start:'2026-11-10',protect:true,sess:null,pain:{},log:[],tests:[BASE_TEST],vol:0.7,pips:'sec',arms:true,ver:0};
 try{var sv=JSON.parse(localStorage.getItem(STORE)||'null');if(sv){for(var k in sv){if(k in state)state[k]=sv[k];}}}catch(e){}
 if(!state.ver){state.start=ymdOf(todayUTC());state.sess=null;state.day=null;state.ver=2;try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){}}
 function save(){try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){}}
@@ -308,7 +315,8 @@ function currentDay(){return state.day||suggestedDay();}
 
 /* ---------- Armado de la rutina del día ---------- */
 function buildDay(d){
-  var pi=phaseInfo(),P=PHASES[pi.ph],list=P[d];
+  var pi=phaseInfo(),P=PHASES[pi.ph],list=P[d].slice();
+  if(state.arms&&P.arms){var at=list.length&&list[list.length-1].x==='hang'?list.length-1:list.length;list=list.slice(0,at).concat(P.arms).concat(list.slice(at));}
   return list.map(function(e){
     var id=e.x,L=LIB[id],t=e.t;
     if(pi.ph===1&&state.protect&&id==='pushL'){id='pushI';L=LIB.pushI;}
@@ -444,13 +452,13 @@ function initSession(d){
   S.i=0;S.s=0;S.phase='home';S.done={};S.last=null;
   S.tot=S.steps.reduce(function(a,e){return a+e.sets;},0);
   var r=state.sess;
-  if(r&&r.v===3&&r.day===d&&r.n===pi.n&&r.i<S.steps.length){S.i=r.i;S.s=r.s;S.done=r.done||{};S.res=r.res||{};}
+  if(r&&r.v===4&&r.day===d&&r.n===pi.n&&r.i<S.steps.length){S.i=r.i;S.s=r.s;S.done=r.done||{};S.res=r.res||{};}
 }
 function ensureSession(){
   var d=currentDay(),pi=phaseInfo();
   if(!S.steps.length||S.day!==d||S.n!==pi.n)initSession(d);
 }
-function persistSess(){state.sess={v:3,day:S.day,n:S.n,i:S.i,s:S.s,done:S.done,res:S.res};save();}
+function persistSess(){state.sess={v:4,day:S.day,n:S.n,i:S.i,s:S.s,done:S.done,res:S.res};save();}
 function doneCount(){var c=0;for(var k in S.done)if(S.done[k])c++;return c;}
 function hasProgress(){return doneCount()>0||S.i>0||S.s>0;}
 function groupStart(i){return i===0||S.steps[i].grp!==S.steps[i-1].grp;}
@@ -646,7 +654,7 @@ function fasesView(){
     '<article class="card"><h2>Ajustes</h2>'+
     '<label class="row">Inicio de la Fase 1 <input type="date" id="startDate" value="'+esc(state.start)+'"></label>'+
     '<label class="row"><input type="checkbox" class="sw" id="protect"'+(state.protect?' checked':'')+'> Modo protección del codo (usa la variante más suave en flexiones)</label>'+
-    '<div class="fctl"><button type="button" class="btn" data-act="starttoday">Empezar hoy (día 1 de la Fase 1)</button><button type="button" class="btn" data-act="nextphase">Pasar a la fase siguiente hoy</button></div>'+
+    '<label class="row"><input type="checkbox" class="sw" id="arms"'+(state.arms?' checked':'')+'> Bloque de brazos al final (tríceps y bíceps sin peso)</label>'+'<div class="fctl"><button type="button" class="btn" data-act="starttoday">Empezar hoy (día 1 de la Fase 1)</button><button type="button" class="btn" data-act="nextphase">Pasar a la fase siguiente hoy</button></div>'+
     '<p class="sub" style="margin:0">Tus datos se guardan solo en este teléfono.</p></article></div>';
 }
 function testView(){
@@ -747,6 +755,7 @@ document.addEventListener('click',function(e){
 document.addEventListener('change',function(e){
   var t=e.target;
   if(t.id==='startDate'&&t.value){state.start=t.value;state.sess=null;S.steps=[];save();render();}
+  if(t.id==='arms'){state.arms=t.checked;state.sess=null;S.steps=[];save();render();}
   if(t.id==='protect'){state.protect=t.checked;state.sess=null;S.steps=[];save();render();}
   if(t.id==='pips'){state.pips=t.value;save();}
 });
